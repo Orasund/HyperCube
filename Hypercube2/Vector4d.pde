@@ -64,10 +64,14 @@ class Vector4d
   float getAngel()
   {
     float phi;
+    if(this.x_>1) this.x_=1;
+    if(this.x_<-1) this.x_=-1;
+    if(this.w_>1) this.w_=1;
+    if this.w_<-1) this.w_=-1;
     if(this.w_>=0)
-      phi=acos(((1+this.x_)%2)-1); //begrenzt den Input von -1 bis 1
+      phi=acos(this.x_);
     else
-      phi=2*PI-acos(((1+this.x_)%2)-1);
+      phi=2*PI-acos(this.x_);
       //phi=2*PI-acos(((1+this.x_)%2)-1);
     return phi;
   }
