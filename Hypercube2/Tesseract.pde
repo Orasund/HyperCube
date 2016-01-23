@@ -41,7 +41,7 @@ class Tesseract
     P_=new Vector4d(1,-1,-1,1);
     P_=P_.divide(sqrt(2));
     
-    MPABIJ_=MP(A_,B_I_,J_);
+    MPABIJ_=MP(A_,B_,I_,J_);
     MPCDKL_=MP(C_,D_,K_,L_);
     MPEFMN_=MP(E_,F_,M_,N_);
     MPGHOP_=MP(G_,H_,O_,P_);
@@ -101,7 +101,7 @@ class Tesseract
   {
     this.rotateSidexw(B_,I_,J_,A_,MPABIJ_,0.01);
     this.rotateSidexw(F_,M_,N_,E_,MPEFMN_,0.01);
-    this.rotateSidexw(D_,K_,L_,C_,MPCDLK_,0.01);
+    this.rotateSidexw(D_,K_,L_,C_,MPCDKL_,0.01);
     this.rotateSidexw(H_,O_,P_,G_,MPGHOP_,0.01);
     /*this.A_.rotateSidexw(B_,I_,J_,0.01);
     this.E_.rotateSidexw(F_,M_,N_,0.01);
