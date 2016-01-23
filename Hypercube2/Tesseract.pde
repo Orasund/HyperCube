@@ -1,6 +1,7 @@
 class Tesseract
 {
   Vector4d A_,B_,C_,D_,E_,F_,G_,H_,I_,J_,K_,L_,M_,N_,O_,P_;
+  Vector4d MPABIJ_, MPCDKL_, MPEFMN_, MPGHOP_;
   
   Tesseract()
   {
@@ -39,6 +40,11 @@ class Tesseract
     O_=O_.divide(sqrt(2));
     P_=new Vector4d(1,-1,-1,1);
     P_=P_.divide(sqrt(2));
+    
+    MPABIJ_=MP(A_,B_,I_,J_);
+    MPCDKL_=MP(C_,D_,K_,L_);
+    MPEFMN_=MP(E_,F_,M_,N_);
+    MPGHOP_=MP(G_,H_,O_,P_);
   }
   
   void show()
@@ -83,9 +89,8 @@ class Tesseract
     return v4.sum(v1.sum(v2.sum(v3))).divide(4);
   }
   
-  void rotateSidexw(Vector4d P1,Vector4d P2, Vector4d P3, Vector4d P4,float phi)
+  void rotateSidexw(Vector4d P1,Vector4d P2, Vector4d P3, Vector4d P4, Vector4d M, float phi)
   {
-    Vector4d M=this.MP(P1,P2,P3,P4);
     P4.rotatexw(M,phi);
     P1.rotatexw(M,phi);
     P2.rotatexw(M,phi);
@@ -94,10 +99,10 @@ class Tesseract
   
   void rotatexw()
   {
-    this.rotateSidexw(B_,I_,J_,A_,0.01);
-    this.rotateSidexw(F_,M_,N_,E_,0.01);
-    this.rotateSidexw(D_,K_,L_,C_,0.01);
-    this.rotateSidexw(H_,O_,P_,G_,0.01);
+    this.rotateSidexw(B_,I_,J_,A_,MPABIJ_,0.01);
+    this.rotateSidexw(F_,M_,N_,E_,MPEFMN_,0.01);
+    this.rotateSidexw(D_,K_,L_,C_,MPCDKL_,0.01);
+    this.rotateSidexw(H_,O_,P_,G_,MPGHOP_,0.01);
     /*this.A_.rotateSidexw(B_,I_,J_,0.01);
     this.E_.rotateSidexw(F_,M_,N_,0.01);
     this.C_.rotateSidexw(D_,K_,L_,0.01);
